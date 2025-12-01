@@ -385,12 +385,35 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,140,0,0.65);
+  background: rgba(255, 140, 0, 0.221);
   opacity: 0;
   transform: translateY(6px);
   transition: opacity .22s ease, transform .22s ease;
   z-index: 20;          /* make sure overlay is above the image and other elements */
   pointer-events: none;
+}
+
+.image-wrapper img {
+  transition: transform 300ms cubic-bezier(.2,.9,.3,1), filter 300ms ease;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+/* zoom slightly when hovering the wrapper (preserve overlay hover) */
+.image-wrapper:hover img,
+.slide.active .image-wrapper:hover img {
+  transform: scale(1.2);
+  /* optional: slightly increase contrast while zooming */
+  /* filter: contrast(1.03); */
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .image-wrapper img,
+  .image-wrapper:hover img {
+    transition: none;
+    transform: none;
+  }
 }
 
 /* only reveal overlays for image wrappers inside the currently visible slide */
@@ -515,6 +538,34 @@ section {
   color: #fff; /* keep readable on .black-page */
 }
 
+#results-list {
+  max-width: 880px;        /* limit width so it doesn't span whole page */
+  margin: 20px auto;       /* centers the block horizontally */
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  padding: 0 16px;
+  /* text-align: center;  <-- uncomment if you want the list text centered as well */
+}
+
+#results-list ol {
+  margin: 0;
+  padding-left: 24px;      /* keeps list items left-aligned for readability */
+}
+
+#results-list {
+  max-width: 880px;        /* limit width so it doesn't span whole page */
+  margin: 20px auto;       /* centers the block horizontally */
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  padding: 0 16px;
+  /* text-align: center;  <-- uncomment if you want the list text centered as well */
+}
+
+#results-list ol {
+  margin: 0;
+  padding-left: 24px;      /* keeps list items left-aligned for readability */
+}
+
 /* override inline styles and keep the visual look */
 #clearBtn {
   padding: 10px 18px;
@@ -595,4 +646,162 @@ main a {
     opacity: 1;
     transition: none;
   }
+}
+
+/* Center and enlarge results chart */
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 32px auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* make the donut wrapper larger and responsive */
+.donut-wrapper {
+  width: 280px;   /* increase size */
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ensure SVG fills the wrapper */
+.donut {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* larger center percentage text */
+.donut text {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+}
+
+/* legend styling (keeps legend next to chart) */
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+}
+
+/* responsive: stack legend under chart on narrow screens */
+@media (max-width: 640px) {
+  .chart-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .donut-wrapper {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+.black-page > h5 {
+  text-align: center;
+  margin: 18px 0; /* adjust vertical spacing as needed */
+  font-family: 'Inter', sans-serif;
+}
+
+.results-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+/* style the primary button */
+#clearBtn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  background: #ff7a00;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+/* style the back link to match the button */
+.results-actions .back-link {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: #ff7a00;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+/* small focus styles */
+#clearBtn:focus,
+.results-actions .back-link:focus {
+  outline: 3px solid rgba(255,122,0,0.2);
+  outline-offset: 2px;
+}
+
+/* responsive tweak */
+@media (max-width: 420px) {
+  .results-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .results-actions .back-link { margin-left: 0; }
+}
+
+.results-actions button,
+.results-actions .back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;         /* controls sizing */
+  min-width: 160px;           /* ensures equal width */
+  height: 44px;               /* fixed height so they match */
+  border-radius: 6px;
+  background: #ff7a00;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+/* keep focus style */
+#clearBtn:focus,
+.results-actions .back-link:focus {
+  outline: 3px solid rgba(255,122,0,0.2);
+  outline-offset: 2px;
+}
+
+/* responsive: allow stacking but keep same width when stacked */
+@media (max-width: 420px) {
+  .results-actions button,
+  .results-actions .back-link {
+    min-width: 220px;
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+#clearBtn {
+  font-size: 1rem; /* ~20px — adjust as needed */
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
 }

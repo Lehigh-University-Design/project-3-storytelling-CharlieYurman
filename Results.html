@@ -14,19 +14,25 @@
     </nav>
   </header>
 
-  <h5>Thank you for playing! Google's Gemini was asked to complete various creative tasks to complete a campaign for "Greene's Organic Orange Juice". If you selected "Option 1", thank Gemini! If you chose "Option 2", you selected the work of a human! Take a look below to see your choices throughout the module.</h5>
+  
+  <h5>Thank you for playing!</h5>
+  <!-- CHART (shows Option 1 vs Option 2) -->
+    <div id="chart-container" class="chart-container" aria-hidden="false">
+      <div id="donut-wrapper" class="donut-wrapper" aria-hidden="true"></div>
+      <div id="chart-legend" class="chart-legend" aria-hidden="true"></div>
+    </div>
 
-  <main style="max-width:1000px;margin:90px auto 60px;padding:20px;color:#fff;">
-    <h4>Your Choices</h4>
     <div id="results-list" aria-live="polite"></div>
 
-    <div style="margin-top:28px;">
-      <button id="clearBtn" style="padding:10px 18px;border-radius:6px;background:#ff7a00;color:#fff;border:none;cursor:pointer;">
+    <div class="results-actions">
+      <button id="clearBtn">
         Clear and Retry
       </button>
-      <a href="index.html" style="margin-left:12px;color:#fff;text-decoration:underline;">Back to Home</a>
+      <a href="index.html" class="back-link">Back to Home</a>
     </div>
   </main>
+
+
 
   <script>
     const listEl = document.getElementById('results-list');
@@ -53,6 +59,46 @@
       localStorage.removeItem('moduleChoices');
       window.location.href = 'playmodule.html';
     });
+
+     // build donut chart
+      const option1Count = choices.reduce((s, v) => s + (v && v.option === 'Option 1' ? 1 : 0), 0);
+      const option2Count = choices.reduce((s, v) => s + (v && v.option === 'Option 2' ? 1 : 0), 0);
+      const total = option1Count + option2Count || 1;
+      const p1 = Math.round((option1Count / total) * 100);
+      const p2 = 100 - p1;
+
+      // render SVG donut using stroke-dasharray
+      const wrapper = document.getElementById('donut-wrapper');
+      const size = 160;
+      const r = 60;
+      const stroke = 22;
+      const c = 2 * Math.PI * r;
+      const seg1 = (option1Count / total) * c;
+      const seg2 = c - seg1;
+
+      wrapper.innerHTML = `
+        <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" class="donut" role="img" aria-label="Choices chart showing ${p1}% Option 1 and ${p2}% Option 2">
+          <g transform="translate(${size/2}, ${size/2}) rotate(-90)">
+            <circle r="${r}" fill="transparent" stroke="#222" stroke-width="${stroke}" opacity="0.12"></circle>
+            <circle r="${r}" fill="transparent" stroke="#ff7a00" stroke-width="${stroke}" stroke-linecap="round"
+              stroke-dasharray="${seg1} ${c - seg1}" style="transition: stroke-dasharray .6s ease;"></circle>
+            <circle r="${r}" fill="transparent" stroke="#fff" stroke-width="${stroke}" stroke-linecap="round"
+              stroke-dasharray="${seg2} ${c - seg2}" transform="rotate(${(seg1/c)*360})" style="transition: stroke-dasharray .6s ease;"></circle>
+          </g>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-size="18" font-family="Inter, sans-serif">${p1}%</text>
+        </svg>
+      `;
+
+      // legend
+      const legend = document.getElementById('chart-legend');
+      legend.innerHTML = `
+        <div class="legend-row"><span class="legend-swatch option1"></span><span>AI — ${option1Count} (${p1}%)</span></div>
+        <div class="legend-row"><span class="legend-swatch option2"></span><span>Human — ${option2Count} (${p2}%)</span></div>
+      `;
+    
+
+
+    
   </script>
 </body>
 </html>
