@@ -33,50 +33,95 @@
 <div class="carousel-container">
   <div class="carousel-track">
 
-    <!-- 8 slides -->
-    <!-- Use your own images -->
-    <div class="slide active">
-      <div class="image-wrapper"><img src="OrangePixel.png"><div class="overlay"><button>Option 1</button></div></div>
-      <div class="image-wrapper"><img src="img1b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    <div class="slide active" data-caption="Step 1 - Mood board: Generate a creative mood board for an organic orange juice brand with color palette and inspiration.">
+      <div class="image-wrapper">
+        <img src="Geminimoodboard.png" alt="">
+        <div class="overlay"><button>Option 1</button></div>
+      </div>
+      <div class="image-wrapper">
+        <img src="OJ Moodboard.jpg" alt="">
+        <div class="overlay"><button>Option 2</button></div>
+      </div>
     </div>
 
-    <div class="slide">
-      <div class="image-wrapper"><img src="img2a.jpg"><div class="overlay"><button>Option 1</button></div></div>
-      <div class="image-wrapper"><img src="img2b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    <div class="slide" data-caption="Step 2 - Logo: Create a logo for this organic orange juice brand, based on your mood board, with the brand name Greene's.">
+      <div class="image-wrapper">
+        <img src="Gemini_logo.png" alt="">
+        <div class="overlay"><button>Option 1</button></div>
+      </div>
+      <div class="image-wrapper">
+        <img src="Screenshot 2025-12-01 at 2.35.27 AM.png" alt="">
+        <div class="overlay"><button>Option 2</button></div>
+      </div>
     </div>
 
-    <div class="slide">
-      <div class="image-wrapper"><img src="img3a.jpg"><div class="overlay"><button>Option 1</button></div></div>
-      <div class="image-wrapper"><img src="img3b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    <div class="slide" data-caption="Step 3 - Tagline: Come up with a catchy tagline for this brand.">
+      <div class="image-wrapper">
+        <img src="Screenshot 2025-12-01 at 2.37.54 AM.png" alt="">
+        <div class="overlay"><button>Option 1</button></div>
+      </div>
+      <div class="image-wrapper">
+        <img src="Screenshot 2025-12-01 at 2.39.16 AM.png" alt="">
+        <div class="overlay"><button>Option 2</button></div>
+      </div>
     </div>
 
-    <div class="slide">
-      <div class="image-wrapper"><img src="img4a.jpg"><div class="overlay"><button>Option 1</button></div></div>
-      <div class="image-wrapper"><img src="img4b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    <div class="slide" data-caption="Step 4 - Package Design: Create vector package design, not mockups, for the brand, Greene's Organic Orange Juice.">
+      <div class="image-wrapper">
+        <img src="Gemini_label.png" alt="">
+        <div class="overlay"><button>Option 1</button></div>
+      </div>
+      <div class="image-wrapper">
+        <img src="OJ package.png" alt="">
+        <div class="overlay"><button>Option 2</button></div>
+      </div>
     </div>
 
-    <div class="slide">
-      <div class="image-wrapper"><img src="img5a.jpg"><div class="overlay"><button>Option 1</button></div></div>
-      <div class="image-wrapper"><img src="img5b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    <div class="slide" data-caption="Step 5 - Mockups: Now create product mockups based on the package designs previously created.">
+      <div class="image-wrapper">
+        <img src="Gemini_bottle.png" alt="">
+        <div class="overlay"><button>Option 1</button></div>
+      </div>
+      <div class="image-wrapper">
+        <img src="OJ Mocks.png" alt="">
+        <div class="overlay"><button>Option 2</button></div>
+      </div>
     </div>
 
-    <div class="slide">
-      <div class="image-wrapper"><img src="img6a.jpg"><div class="overlay"><button>Option 1</button></div></div>
-      <div class="image-wrapper"><img src="img6b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    <div class="slide" data-caption="Step 6 - Poster: With the product mockups just created, design a poster ad">
+      <div class="image-wrapper">
+        <img src="Gemini_poster.png" alt="">
+        <div class="overlay"><button>Option 1</button></div>
+      </div>
+      <div class="image-wrapper">
+        <img src="OJ poster.png" alt="">
+        <div class="overlay"><button>Option 2</button></div>
+      </div>
     </div>
 
-    <div class="slide">
-      <div class="image-wrapper"><img src="img7a.jpg"><div class="overlay"><button>Option 1</button></div></div>
-      <div class="image-wrapper"><img src="img7b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    <div class="slide" data-caption="Step 7 - Instagram: Based off the previous product mockups and ad design, create social media content mockups for Instagram">
+      <div class="image-wrapper">
+        <img src="Gemini_phone.png" alt="">
+        <div class="overlay"><button>Option 1</button></div>
+      </div>
+      <div class="image-wrapper">
+        <img src="Oj phone.png" alt="">
+        <div class="overlay"><button>Option 2</button></div>
+      </div>
     </div>
 
-    <div class="slide">
-      <div class="image-wrapper"><img src="img8a.jpg"><div class="overlay"><button>Option 1</button></div></div>
-      <div class="image-wrapper"><img src="img8b.jpg"><div class="overlay"><button>Option 2</button></div></div>
-    </div>
-
+  <div class="slide" data-caption="See The Results!">
+  <div class="results-container">
+    <a href="results.html" class="results-link" role="button" aria-label="See the results page">See The Results!</a>
   </div>
 </div>
+
+  </div> <!-- .carousel-track -->
+</div> <!-- .carousel-container -->
+<!-- ...existing code... -->
+
+<!-- caption placed below carousel, dots, and buttons -->
+<div id="carousel-caption" class="carousel-caption" aria-live="polite"></div>
 
 <!-- DOTS -->
 <div class="dots">
@@ -97,6 +142,37 @@
 </div>
 
 <script>
+
+     // set caption text from active slide
+  function updateCarouselCaption() {
+    const captionEl = document.getElementById('carousel-caption');
+    const active = document.querySelector('.slide.active');
+    if (!captionEl) return;
+    captionEl.textContent = active?.dataset?.caption || '';
+  }
+
+  // init
+  updateCarouselCaption();
+
+  // If you have a goToSlide(index) function, call updateCarouselCaption() inside it.
+  // Fallback: observe class changes on slides and update when active changes
+  document.querySelectorAll('.slide').forEach(slide => {
+    const obs = new MutationObserver(muts => {
+      muts.forEach(m => {
+        if (m.attributeName === 'class') updateCarouselCaption();
+      });
+    });
+    obs.observe(slide, { attributes: true });
+  });
+
+  // Also update after clicking dot/next/back if those handlers exist:
+  document.addEventListener('click', (e) => {
+    if (e.target.matches('.dot, .carousel-buttons button')) {
+      // small delay if your handlers run first
+      setTimeout(updateCarouselCaption, 10);
+    }
+  });
+
 const slides = Array.from(document.querySelectorAll(".slide"));
 const dots = Array.from(document.querySelectorAll(".dot"));
 const progressBar = document.getElementById("progress-bar");
@@ -136,6 +212,51 @@ dots.forEach(dot => {
 
 // Initialize
 goToSlide(0);
+
+// ...existing code...
+
+  // ...existing carousel code above (goToSlide, next/back handlers, etc.) ...
+
+  // persist user choices here
+  const savedChoices = JSON.parse(localStorage.getItem('moduleChoices') || '[]');
+
+  // attach click handlers to option buttons
+  document.querySelectorAll('.image-wrapper .overlay button').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const wrapper = btn.closest('.image-wrapper');
+      const slideEl = btn.closest('.slide');
+      const slideIndex = slides.indexOf(slideEl);
+      if (slideIndex === -1) return;
+
+      // determine which option (left = Option 1, right = Option 2)
+      const wrappers = Array.from(slideEl.querySelectorAll('.image-wrapper'));
+      const optionIndex = wrappers.indexOf(wrapper); // 0 or 1
+      const optionLabel = optionIndex === 0 ? 'Option 1' : 'Option 2';
+      const caption = slideEl.dataset.caption || '';
+
+      // store or overwrite choice for this slide
+      savedChoices[slideIndex] = {
+        slide: slideIndex,
+        option: optionLabel,
+        caption: caption,
+        time: new Date().toISOString()
+      };
+      localStorage.setItem('moduleChoices', JSON.stringify(savedChoices));
+
+      // visual feedback (optional)
+      wrappers.forEach(w => w.classList.remove('selected'));
+      wrapper.classList.add('selected');
+
+      // advance to next slide or finish
+      if (slideIndex < totalSlides - 1) {
+        goToSlide(slideIndex + 1);
+      } else {
+        // finished all slides -> show results page
+        window.location.href = 'results.html';
+      }
+    });
+  });
 </script>
 
 </body>

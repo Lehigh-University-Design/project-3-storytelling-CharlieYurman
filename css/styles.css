@@ -3,6 +3,50 @@
 
 /* Full-width black container */
 .title-container {
+  overflow: hidden; /* prevents visible overflow while animating */
+}
+
+.hero-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* prepare spans for animation */
+.hero-title span {
+  display: inline-block;
+  transform: translateX(120%);
+  opacity: 0;
+}
+
+/* staggered slide-in using existing word selectors */
+.hero-title .word1,
+.hero-title .word2,
+.hero-title .word3 {
+  animation: slideInFromRight 560ms cubic-bezier(.2,.9,.3,1) forwards;
+}
+.hero-title .word1 { animation-delay: 0ms; }
+.hero-title .word2 { animation-delay: 140ms; }
+.hero-title .word3 { animation-delay: 280ms; }
+
+@keyframes slideInFromRight {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title span {
+    transform: none;
+    opacity: 1;
+    animation: none;
+  }
+}
+/* ...existing code... */
+.title-container {
   width: 100%;
   background: black;
   padding: 20px 0;    /* space above/below title */
@@ -98,6 +142,42 @@
 
 /* Global variables */
 
+.white-container2 {
+  width: 80%;
+  background: white;
+  padding: 20px;   /* space inside the container */
+  box-sizing: border-box;
+  margin: 0px auto 0; /* center the container on the page */
+  text-align: center; /* center the inline images */
+  position: relative;
+}
+
+.white-container2 img {
+  display: inline-block;
+  width: 100%;
+  max-width: 600px;   /* reduce this value to make images smaller */
+  height: auto;
+  margin: 12px;
+  vertical-align: middle;
+}
+.white-container2 h3 {
+  margin-top: 8px;   /* reduce or set to 0 to remove completely */
+  padding-top: 0;
+}
+
+/* optional: reduce gap under the hero so .white-container2 naturally sits higher */
+.title-container h2 {
+  margin-bottom: 12px; /* lower the subtitle bottom margin if needed */
+}
+
+/* stack / full-width on small screens */
+@media (max-width: 600px) {
+  .white-container2 img {
+    max-width: 100%;
+    margin: 10px 0;
+  }
+}
+
 :root {
     
 }
@@ -130,6 +210,30 @@ h3 {
   margin-top: 250px;
 }
 
+.white-container h3 {
+  display: inline-block; /* allow transform without affecting layout */
+  transform: translateX(-120%);
+  opacity: 0;
+  animation: slideInFromLeft 560ms cubic-bezier(.2,.9,.3,1) forwards;
+  animation-delay: 120ms; /* small delay after hero animation */
+}
+
+@keyframes slideInFromLeft {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .white-container h3 {
+    transform: none;
+    opacity: 1;
+    animation: none;
+  }
+}
+
 h4 {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
@@ -137,6 +241,16 @@ h4 {
   color: #ffffff;
   margin-top: 50px;
 
+}
+
+h5 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 p {
@@ -225,9 +339,11 @@ section {
   opacity: 0;
   transition: opacity 0.6s ease-in-out;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* center images horizontally */
+  align-items: center;     /* center vertically inside slide */
   gap: 20px;
   padding: 20px;
+  flex-wrap: nowrap;       /* keep images side-by-side */
 }
 
 .slide.active {
@@ -239,19 +355,27 @@ section {
 /* ...existing code... */
 
 /* IMAGE WRAPPER + ORANGE OVERLAY */
+
+/* two columns that fill the slide height */
 .image-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  display: block;       /* let flex parent (.slide) control layout */
-  width: 48%;
-  margin: 1%;
-  z-index: 1;           /* base stacking for wrapper */
+  flex: 0 0 calc(50% - 10px); /* two equal columns */
+  max-width: calc(50% - 10px);
+  height: 100%;               /* allow the wrapper to use the slide height */
+  box-sizing: border-box;
 }
 
 .image-wrapper img {
   display: block;
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
+  object-fit: contain; /* preserve full image inside available area */
 }
 
 /* overlay sits on top of the image, hidden by default */
@@ -294,7 +418,8 @@ section {
 
 /* responsive */
 @media (max-width: 700px) {
-  .image-wrapper { width: 100%; margin: 8px 0; }
+  .slide { flex-wrap: wrap; }
+  .image-wrapper { flex: 0 0 100%; max-width: 100%; margin: 8px 0; }
 }
 
 /* -------------------- DOT NAVIGATION -------------------- */
@@ -338,5 +463,136 @@ section {
   background: #333;
 }
 
+.carousel-caption {
+  max-width: 1000px;
+  margin: 18px auto 40px;
+  text-align: center;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
 
+/* ...existing code... */
+.slide .results-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 12px;
+  box-sizing: border-box;
+}
 
+.results-link {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  padding: 12px 28px;
+  background: #ff7a00;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+/* keep consistent on small screens */
+@media (max-width: 600px) {
+  .results-link { padding: 10px 18px; }
+}
+
+/* keep consistent on small screens */
+@media (max-width: 600px) {
+  .results-link { padding: 10px 18px; }
+}
+
+#results-list,
+#results-list ol,
+#results-list li,
+#results-list p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #fff; /* keep readable on .black-page */
+}
+
+/* override inline styles and keep the visual look */
+#clearBtn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  background: #ff7a00;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  /* ensure Inter is applied even if inline styles exist */
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* style the back link so it matches */
+main a {
+  margin-left: 12px;
+  color: #fff;
+  text-decoration: underline;
+  font-family: 'Inter', sans-serif;
+}
+
+.lingo-list {
+  list-style: none;       /* remove bullets */
+  padding: 0;             /* remove default left padding */
+  margin: 0;              /* reset margin */
+  font-family: 'Inter', sans-serif; /* use Inter */
+  color: #111;            /* adjust as needed for contrast */
+}
+
+.lingo-list li {
+  margin-bottom: 0.75rem; /* spacing between items */
+}
+
+/* optional: make the term (strong) stand out */
+.lingo-list li strong {
+  font-weight: 700;
+  font-size: 1.5em;
+}
+
+.white-container2 .lingo-list {
+  text-align: left;       /* left-align the list text */
+  margin: 0 auto;         /* keep the list block centered in the container */
+  max-width: 900px;       /* optional: limit line length */
+  padding-left: 0;        /* remove browser default ul padding */
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem; /* ~18px — increase or decrease to taste */
+  line-height: 1.6;
+}
+
+.white-container2 .lingo-list li {
+  margin-bottom: 0.75rem; /* spacing between items */
+  padding-left: 0.25rem;  /* slight indent for readability (optional) */
+
+}
+
+/* keep the images centered while list is left-aligned */
+.white-container2 img {
+  display: inline-block;
+  margin: 12px auto;
+}
+
+.lingo-list li {
+  transform: translateY(24px);
+  opacity: 0;
+  transition: transform 480ms cubic-bezier(.2,.9,.3,1), opacity 320ms ease;
+  will-change: transform, opacity;
+}
+
+.lingo-list li.in-view {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .lingo-list li {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}

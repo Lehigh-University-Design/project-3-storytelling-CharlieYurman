@@ -21,3 +21,67 @@
     <a href="playmodule.html">Play The Module</a>
   </nav>
 </header>
+
+    <!-- Content -->
+<div class="title-container">
+<h1 class="hero-title">
+  <span class="word1">AI</span>
+  <span class="word2">Vs.</span>
+  <span class="word3">Creatives</span>
+</h1>
+<h2>Discover how the involvement of AI tools influences a creative campaign compared to human creatives.</h2>
+</div>
+
+<div class="white-container2">
+  <h3>Learn AI Lingo</h3>
+
+  <ul class="lingo-list">
+    <li><strong>Artificial Intelligence (AI):</strong> A field of computer science focused on creating systems that can perform tasks that typically require human intelligence (e.g., reasoning, language understanding, vision, problem-solving).</li>
+    <li><strong>Machine Learning (ML):</strong> A subset of AI where systems learn patterns from data instead of being explicitly programmed. The system improves performance as it processes more examples.</li>
+    <li><strong>Deep Learning:</strong> A type of machine learning that uses many-layered neural networks to learn complex patterns—commonly used in image recognition, speech processing, and language models.</li>
+    <li><strong>Neural Network:</strong> A computational model inspired by the human brain, made up of interconnected “neurons” (nodes) that process and pass information.</li>
+    <li><strong>Large Language Model (LLM):</strong> A type of AI trained on vast amounts of text to understand and generate human-like language. (Example: ChatGPT)</li>
+    <li><strong>Training Data:</strong> The information fed into an AI system during training to help it learn patterns, relationships, and behaviors.</li>
+    <li><strong>Algorithm:</strong> A set of rules or instructions a computer follows to solve a problem or perform a task.</li>
+    <li><strong>Dataset:</strong> A collection of data (text, images, audio, numbers, etc.) used to train or evaluate machine learning models.</li>
+    <li><strong>Prompt:</strong> Text (or other input) given to an AI model to tell it what you want it to generate or answer.</li>
+    <li><strong>Token:</strong> A small unit of text—often a word or piece of a word—that AI models process and generate.</li>
+    <li><strong>Inference:</strong> The process of an AI model using what it has learned to produce an output (e.g., answering a question).</li>
+    <li><strong>Overfitting:</strong> When a model learns the training data too well—including its noise and mistakes—so it performs poorly on new, unseen data.</li>
+    <li><strong>Bias (in AI):</strong> Systematic errors in an AI model caused by unbalanced or flawed training data, leading to unfair or inaccurate outputs.</li>
+    <li><strong>Fine-Tuning:</strong> Training an existing AI model further on a smaller, specific dataset to specialize it for particular tasks.</li>
+    <li><strong>Reinforcement Learning:</strong> A type of learning where an AI system improves by receiving rewards or penalties based on its actions—similar to training through trial and error.</li>
+    <li><strong>API (Application Programming Interface):</strong> A tool that allows developers to connect AI capabilities to apps or services.</li>
+    <li><strong>Model Parameters:</strong> The internal values a model adjusts during training to learn patterns. Large models have billions of parameters.</li>
+    <li><strong>Multimodal AI:</strong> AI systems that can process multiple types of data—e.g., text, images, audio, video—simultaneously.</li>
+    <li><strong>Generative AI:</strong> AI that can create new content such as text, images, music, or code based on what it has learned.</li>
+    <li><strong>Hallucination (in AI):</strong> When an AI produces information that sounds plausible but is factually incorrect or made up.</li>
+    <li><strong>AI Slop:</strong> an informal, often humorous or critical term used to describe low-quality, bland, repetitive, or obviously machine-generated content produced by AI systems.</li>
+</ul>
+</div>
+
+<div class="black-container">
+
+ </div>
+
+ <script>
+(function(){
+  const items = Array.from(document.querySelectorAll('.lingo-list li'));
+  if (!items.length) return;
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const idx = items.indexOf(el);
+        // stagger by index
+        el.style.transitionDelay = (idx * 80) + 'ms';
+        el.classList.add('in-view');
+        obs.unobserve(el);
+      }
+    });
+  }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+  items.forEach(i => observer.observe(i));
+})();
+</script>
