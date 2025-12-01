@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- CSS Refs -->
+    <link type="text/css" href="css/styles.css" rel="stylesheet"/>
+
+    <!-- Title -->
+    <title>AI Vs. Creatives</title>
+
+</head>
+
+<body class="black-page">
+<!-- STICKY HEADER -->
+<header class="sticky-header">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="isaibad.html">Is AI Bad?</a>
+    <a href="usefullingo.html">Lingo To Know</a>
+    <a href="playmodule.html">Play The Module</a>
+  </nav>
+</header>
+
+<!-- PROGRESS BAR -->
+<div id="progress-container">
+  <div id="progress-bar"></div>
+</div>
+
+<!-- CAROUSEL -->
+<div class="carousel-container">
+  <div class="carousel-track">
+
+    <!-- 8 slides -->
+    <!-- Use your own images -->
+    <div class="slide active">
+      <div class="image-wrapper"><img src="OrangePixel.png"><div class="overlay"><button>Option 1</button></div></div>
+      <div class="image-wrapper"><img src="img1b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    </div>
+
+    <div class="slide">
+      <div class="image-wrapper"><img src="img2a.jpg"><div class="overlay"><button>Option 1</button></div></div>
+      <div class="image-wrapper"><img src="img2b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    </div>
+
+    <div class="slide">
+      <div class="image-wrapper"><img src="img3a.jpg"><div class="overlay"><button>Option 1</button></div></div>
+      <div class="image-wrapper"><img src="img3b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    </div>
+
+    <div class="slide">
+      <div class="image-wrapper"><img src="img4a.jpg"><div class="overlay"><button>Option 1</button></div></div>
+      <div class="image-wrapper"><img src="img4b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    </div>
+
+    <div class="slide">
+      <div class="image-wrapper"><img src="img5a.jpg"><div class="overlay"><button>Option 1</button></div></div>
+      <div class="image-wrapper"><img src="img5b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    </div>
+
+    <div class="slide">
+      <div class="image-wrapper"><img src="img6a.jpg"><div class="overlay"><button>Option 1</button></div></div>
+      <div class="image-wrapper"><img src="img6b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    </div>
+
+    <div class="slide">
+      <div class="image-wrapper"><img src="img7a.jpg"><div class="overlay"><button>Option 1</button></div></div>
+      <div class="image-wrapper"><img src="img7b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    </div>
+
+    <div class="slide">
+      <div class="image-wrapper"><img src="img8a.jpg"><div class="overlay"><button>Option 1</button></div></div>
+      <div class="image-wrapper"><img src="img8b.jpg"><div class="overlay"><button>Option 2</button></div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DOTS -->
+<div class="dots">
+  <span class="dot active" data-slide="0"></span>
+  <span class="dot" data-slide="1"></span>
+  <span class="dot" data-slide="2"></span>
+  <span class="dot" data-slide="3"></span>
+  <span class="dot" data-slide="4"></span>
+  <span class="dot" data-slide="5"></span>
+  <span class="dot" data-slide="6"></span>
+  <span class="dot" data-slide="7"></span>
+</div>
+
+<!-- NEXT / BACK -->
+<div class="carousel-buttons">
+  <button id="backBtn">Back</button>
+  <button id="nextBtn">Next</button>
+</div>
+
+<script>
+const slides = Array.from(document.querySelectorAll(".slide"));
+const dots = Array.from(document.querySelectorAll(".dot"));
+const progressBar = document.getElementById("progress-bar");
+
+let currentSlide = 0;
+const totalSlides = slides.length;
+
+function goToSlide(index) {
+  slides.forEach(s => s.classList.remove("active"));
+  dots.forEach(d => d.classList.remove("active"));
+
+  slides[index].classList.add("active");
+  dots[index].classList.add("active");
+
+  currentSlide = index;
+
+  // Update progress bar
+  const progress = ((currentSlide + 1) / totalSlides) * 100;
+  progressBar.style.width = progress + "%";
+}
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+  let newIndex = (currentSlide + 1) % totalSlides;
+  goToSlide(newIndex);
+});
+
+document.getElementById("backBtn").addEventListener("click", () => {
+  let newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+  goToSlide(newIndex);
+});
+
+dots.forEach(dot => {
+  dot.addEventListener("click", () => {
+    goToSlide(parseInt(dot.dataset.slide));
+  });
+});
+
+// Initialize
+goToSlide(0);
+</script>
+
+</body>
+</html>
+
+

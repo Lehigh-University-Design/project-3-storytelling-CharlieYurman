@@ -1,4 +1,100 @@
-/* styles.css */
+/* Main styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+10&family=Rock+Salt&family=Slabo+27px&display=swap');
+
+/* Full-width black container */
+.title-container {
+  width: 100%;
+  background: black;
+  padding: 20px 0;    /* space above/below title */
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.hero-title .word1 {
+  font-family: 'Jersey 10', sans-serif;
+  color: #ffffff;
+}
+
+.hero-title .word2 {
+  font-family: 'Slabo 27px', serif;
+  color: #ffffff;
+}
+
+.hero-title .word3 {
+  font-family: 'Rock Salt', cursive;
+  color: #ffffff;
+}
+
+.black-container {
+ width: 100%;
+  /* remove fixed height so container grows with content */
+  background: #000;
+  padding: 60px 0;             /* vertical spacing */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;      /* stack text + image */
+  align-items: center;         /* center horizontally */
+  justify-content: center;     /* center vertically if you want */
+  margin: 0 auto;
+}
+
+.black-container h4 {
+  max-width: 900px;            /* prevents overly long lines */
+  text-align: center;
+  color: #fff;
+  margin: 0 20px 24px;         /* reset large top margin and add spacing */
+  font-family: 'Inter', sans-serif;
+}
+
+/* wrapper so we can absolutely-position the button over the image */
+.orange-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: -100px auto 0;   /* keep your visual overlap if desired */
+}
+.start-button {
+  position: absolute;
+  bottom: 380px;               /* adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000000;        /* orange color */
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+/* style the orange image so it centers and scales */
+.orange-image {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;            /* adjust to desired size */
+  height: auto;
+  margin: -100px auto 0;
+}
+
+.white-container {
+  width: 80%;
+  background: white;
+  padding: 40px 20px;   /* space inside the container */
+  box-sizing: border-box;
+  margin: 0 auto; /* center the container on the page */
+}
+
+.white-container .module-image {
+  display: block;
+  width: 100%;         /* responsive: fill container */
+  max-width: 600px;    /* set the maximum size you want */
+  height: auto;        /* preserve aspect ratio */
+  margin: 0 auto -100px; /* center and add bottom spacing */
+}
 
 /* Global variables */
 
@@ -6,7 +102,7 @@
     
 }
 
-/* Main styles */
+
 
 body {
 
@@ -16,6 +112,231 @@ h1 {
 
 }
 
-p {
+
+h2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-top: -50px;
 
 }
+
+h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #000000;
+  margin-top: 250px;
+}
+
+h4 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-top: 50px;
+
+}
+
+p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #000000;
+  margin-top: px;
+
+}
+
+/* Sticky header */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #000;       /* black background */
+  padding: 15px 0;
+  z-index: 999;           /* keeps it above other elements */
+}
+
+/* Navigation styling */
+.sticky-header nav {
+  text-align: center;
+}
+
+.sticky-header nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.sticky-header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Optional: style sections for visibility */
+section {
+  padding: 60px 20px;
+}
+
+.black-page {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh; /* ensure it fills the viewport */
+}
+
+/* -------------------- PROGRESS BAR -------------------- */
+#progress-container {
+  width: 100%;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+#progress-bar {
+  width: 0%;
+  height: 100%;
+  background: orange;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* -------------------- CAROUSEL WRAPPER -------------------- */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 450px; /* Keep slides same height */
+  overflow: hidden;
+}
+
+/* Track holds slides stacked on top of each other */
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Each slide fades in/out */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* -------------------- IMAGE + ORANGE OVERLAY -------------------- */
+/* ...existing code... */
+
+/* IMAGE WRAPPER + ORANGE OVERLAY */
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: block;       /* let flex parent (.slide) control layout */
+  width: 48%;
+  margin: 1%;
+  z-index: 1;           /* base stacking for wrapper */
+}
+
+.image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* overlay sits on top of the image, hidden by default */
+.image-wrapper .overlay {
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,140,0,0.65);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .22s ease, transform .22s ease;
+  z-index: 20;          /* make sure overlay is above the image and other elements */
+  pointer-events: none;
+}
+
+/* only reveal overlays for image wrappers inside the currently visible slide */
+.slide.active .image-wrapper:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* style the overlay button */
+.image-wrapper .overlay button {
+  background: #ffffff;
+  color: #ff6a00;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+/* make sure inactive slides don't intercept hover */
+.slide { pointer-events: none; }
+.slide.active { pointer-events: auto; z-index: 5; }
+
+/* responsive */
+@media (max-width: 700px) {
+  .image-wrapper { width: 100%; margin: 8px 0; }
+}
+
+/* -------------------- DOT NAVIGATION -------------------- */
+.dots {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 6px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dot.active {
+  background-color: orange;
+}
+
+/* -------------------- NEXT / BACK -------------------- */
+.carousel-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.carousel-buttons button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.carousel-buttons button:hover {
+  background: #333;
+}
+
+
+
