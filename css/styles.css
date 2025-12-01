@@ -13,6 +13,82 @@
   gap: 0.25rem;
 }
 
+/* Responsive hero title */
+.hero-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  margin: 0;
+  display: inline-flex;
+  gap: 0.4rem;
+  justify-content: center;
+  align-items: center;
+
+  /* fluid size: min 2rem, scales with viewport, max 4.8rem */
+  font-size: clamp(2rem, 6.5vw, 4.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* keep animated words as inline blocks so transforms work */
+.hero-title span {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* smaller subtitle sizing that scales too */
+.title-container h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.4;
+  font-weight: 400;
+  margin-top: 0.6rem;
+}
+
+/* tweak spacing on very small screens */
+@media (max-width: 420px) {
+  .hero-title { gap: 0.2rem; font-size: clamp(1.6rem, 9vw, 3.2rem); }
+  .title-container h2 { font-size: 1rem; }
+}
+
+/* Responsive hero title */
+.hero-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  margin: 0;
+  display: inline-flex;
+  gap: 0.4rem;
+  justify-content: center;
+  align-items: center;
+
+  /* fluid size: min 2rem, scales with viewport, max 4.8rem */
+  font-size: clamp(2rem, 6.5vw, 4.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* keep animated words as inline blocks so transforms work */
+.hero-title span {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* smaller subtitle sizing that scales too */
+.title-container h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.4;
+  font-weight: 400;
+  margin-top: 0.6rem;
+}
+
+/* tweak spacing on very small screens */
+@media (max-width: 420px) {
+  .hero-title { gap: 0.2rem; font-size: clamp(1.6rem, 9vw, 3.2rem); }
+  .title-container h2 { font-size: 1rem; }
+}
+
 /* prepare spans for animation */
 .hero-title span {
   display: inline-block;
@@ -804,4 +880,85 @@ main a {
   font-size: 1rem; /* ~20px — adjust as needed */
   font-weight: 700;
   font-family: 'Inter', sans-serif;
+}
+
+/* ensure the container hides the image while it slides in */
+.white-container {
+  overflow: hidden;
+}
+
+/* slide-in-from-right for the module image */
+.module-image {
+  display: block;
+  transform: translateX(120%);
+  opacity: 0;
+  animation: slideInFromRightImage 560ms cubic-bezier(.2,.9,.3,1) forwards;
+  animation-delay: 120ms;
+  will-change: transform, opacity;
+}
+
+@keyframes slideInFromRightImage {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .module-image {
+    transform: none;
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* ensure the container hides the image while it slides in */
+.white-container {
+  overflow: hidden;
+}
+
+/* slide-in-from-right for the module image */
+.module-image {
+  display: block;
+  transform: translateX(120%);
+  opacity: 0;
+  animation: slideInFromRightImage 560ms cubic-bezier(.2,.9,.3,1) forwards;
+  animation-delay: 120ms;
+  will-change: transform, opacity;
+}
+
+@keyframes slideInFromRightImage {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .module-image {
+    transform: none;
+    opacity: 1;
+    animation: none;
+  }
+}
+
+.slide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* side-by-side */
+  gap: 1rem;
+}
+
+.slide-grid img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px; /* optional */
+}
+
+@media (max-width: 768px) {
+  .slide-grid {
+    grid-template-columns: 1fr; /* stack images */
+  }
 }
